@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title Page-->
+    <title>Hypertension Evaluation Tool</title>
+
+    <!-- Icons font CSS-->
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="css/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-1">
+                <div class="card-heading"></div>
+                <div class="card-body">
+                    <h2 style="font-weight: bold" class="title">Hypertension Evaluation Tool</h2>
+                    <form method="POST" id="form">
+                        <fieldset id="wrapper">
+                        <div id="refer" class="col-4">
+                            <h2 class="title">Refer to Physician.</h2>
+                        </div>
+                        <div id="nurse" class="col-4">
+                            <h2 class="title">Nursing intervention is sufficient.</h2>
+                            <a style='font-size:1.4em' href="https://www.heart.org/en/health-topics/consumer-healthcare/medication-information/medication-adherence-taking-your-meds-as-directed">Click here to learn more about medication compliance.</a>
+                        </div>
+                        <div id="cessation" class="col-4">
+                            <a style='font-size:1.4em' href="https://www.samhsa.gov/">Drug cessation is recommended.  Click here to get help.</a>
+                        </div>
+                        <div id="diet" class="col-4">
+                            <a style='font-size:1.4em' href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/in-depth/dash-diet/art-20048456">We recommended the Dash Diet.  Click here to learn more.</a>
+                        </div>
+                        <div id="summary" class="col-4">
+                            <h2 class="title">Patient Summary</h2>
+                        </div>
+                        <div id="q1" class="col-4">
+                                <h3 class="title">Did patient bring their cuff?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="cuff" onchange="q1()" name="cuff_status">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div id="q2" class="col-4">
+                                <h3 class="title">Is the bp cuff functional?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="cuff2" onchange="q2()" name="cuff_functional">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div id="q3" class="col-4">
+                                <h3 class="title">Is the patient using the correct technique for measuring their blood pressure?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="cuff3" onchange="q3()" name="cuff_technique">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div id="r2" class="col-4">
+                            <h3 class="title">Educate patient on correct technique.</h3>
+                        </div>
+                        <div id="q4" class="col-4">
+                                <h3 class="title">Please take bp reading of patient using clinical equipment.</h3>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="number" placeholder="Systolic Pressure" id="bp1" name="bp1_read">
+                                </div>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="number" placeholder="Diastolic Pressure" id="bp2" name="bp2_read">
+                                </div>
+                                 <h3 class="title">Did the patient take a reading at home?</h3>
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select id="homeRead" onchange="q5()" name="home_read">
+                                        <option disabled="disabled" selected="selected">Pick an option.</option>
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                </div>
+                            </div>
+                        <div id="q5" class="col-4">
+                                <h3 class="title">What is the reading the patient reported at home?</h3>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="number" placeholder="Systolic Pressure" id="bp3" name="bp3_read">
+                                </div>
+                                <div class="input-group">
+                                    <input class="input--style-1" type="number" placeholder="Diastolic Pressure" id="bp4" name="bp4_read">
+                                </div>
+                        </div>
+                        <div id="r3" class="col-4">
+                            <h3 class="title">Patient's bp reading is more than 10% from clinical measurement.   Please verify accuracy of home equipment.</h3>
+                        </div>
+                        <div id="r4" class="col-4">
+                            <h3 class="title">Clinician measured bp consistent with potential hypertension.  Proceed to tool.</h3>
+                        </div>
+                        <div id="t1" class="col-4">
+                                <h3 class="title">Is the patient on a channel blocker?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="t1a" name="t1a">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">Is the patient on a ace/arb inhibitor?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="t1b" name="t1b">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">Is the patient on a thiazide?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="t1c" name="t1c">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">List the medications patient is taking.  If none, leave blank.</h3>
+                                <div class="input-group">
+                                    <textarea class="form-control rounded-0" style="min-width: 100%" id="medications" rows="10"></textarea>
+                                </div>
+                                <h3 class="title">Is the patient compliant with medications?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="compliant" name="compliant">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div id="t2" class="col-4">
+                                <div class="input-group">
+                                    <h3 class="title">Patient Height (in)</h3>
+                                    <input class="input--style-1" type="number" placeholder="Insert patient height" id="height">
+                                    <h3 class="title">Patient Weight (lbs)</h3>
+                                    <input class="input--style-1" type="number" placeholder="Insert patient weight" id="weight">
+                                    <h3 class="title">Patient Age (years)</h3>
+                                    <input class="input--style-1" type="number" placeholder="Insert patient age" id="age">
+                                </div>
+                                <h3 class="title">Gender</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="gender">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Male</option>
+                                            <option>Female</option>
+                                            <option>Other</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                               <h3 class="title">Does patient smoke tobacco?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="tobacco">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Yes</option>
+                                            <option>No</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">How often does the patient consume alcohol?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="alcohol">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Never</option>
+                                            <option>A few times a year</option>
+                                            <option>Once a month</option>
+                                            <option>Twice a month</option>
+                                            <option>Once a week</option>
+                                            <option>Twice a week</option>
+                                            <option>Once a day</option>
+                                            <option>Multiple times a day</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">How often does the patient exercise?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="exercise1">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Never</option>
+                                            <option>Once a month</option>
+                                            <option>Twice a month</option>
+                                            <option>Once a week</option>
+                                            <option>2 to 3 times a week</option>
+                                            <option>4 or more times a week</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">Duration of exercise sessions?</h3>
+                                <div class="input-group">
+                                    <div class="rs-select2 js-select-simple select--no-search">
+                                        <select id="exercise2">
+                                            <option disabled="disabled" selected="selected">Pick an option.</option>
+                                            <option>Never</option>
+                                            <option>15 mins</option>
+                                            <option>30 mins</option>
+                                            <option>45 mins</option>
+                                            <option>1+ hour</option>
+                                        </select>
+                                        <div class="select-dropdown"></div>
+                                    </div>
+                                </div>
+                                <h3 class="title">Does the patient consume illicit drugs?  If so, list them.  If none, leave blank.</h3>
+                                <div class="input-group">
+                                    <textarea class="form-control rounded-0" style="min-width: 100%" id="drugs" rows="10"></textarea>
+                                </div>
+                        </div>
+                        </fieldset>
+                        <div class="p-t-20">
+                            <button id="button1" class="btn btn--radius btn--green" type="button" onclick="back()">Back</button>
+                        </div>
+                        <div class="p-t-20">
+                            <button id="button1" class="btn btn--radius btn--green" type="button" onclick="eval()">Submit</button>
+                        </div>
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="vendor/select2/select2.min.js"></script>
+    <script src="vendor/datepicker/moment.min.js"></script>
+    <script src="vendor/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    /*
+    <script>
+        var preScreen = false;
+        var hyperTool0 = false;
+        var hyperTool1 = false;
+        var hyperTool2 = false;
+      function q1() {
+        var x = document.getElementById("cuff").value;
+        document.getElementById("q1").style.display = "none";
+        if (x=="Yes"){
+            document.getElementById("q2").style.display = "block";
+        } else {
+            document.getElementById("r1").style.display = "block";
+        }
+      }
+      function q2() {
+        var x = document.getElementById("cuff2").value;
+        document.getElementById("q2").style.display = "none";
+        if (x=="Yes"){
+            document.getElementById("q3").style.display = "block";
+        } else {
+            window.location.href = "https://www.amazon.com/Pressure-Automatic-Carrying-Irregular-Heartbeat/dp/B09FL2JVLW/";
+        }
+      }
+      function q3() {
+        var x = document.getElementById("cuff3").value;
+        document.getElementById("q3").style.display = "none";
+        if (x=="Yes"){
+            document.getElementById("q4").style.display = "block";
+        } else {
+            document.getElementById("r2").style.display = "block";
+        }
+      }
+        
+      function q5() {
+        var x = document.getElementById("homeRead").value;
+        if (x=="Yes"){
+            document.getElementById("q5").style.display = "block";
+        } else {
+            document.getElementById("q5").style.display = "none";
+        }
+        document.getElementById("button1").style.display = "block";
+      }
+        
+      function back(){
+          
+          
+      }
+        
+      function eval() {
+        window.scrollTo(0, 0);
+        if (preScreen==false){
+            var c1 = document.getElementById("bp1").value;
+        var c2 = document.getElementById("bp2").value;
+        var h1 = document.getElementById("bp3").value;
+        var h2 = document.getElementById("bp4").value;
+        var home = document.getElementById("homeRead").value;
+        if (c1!=0 && c2!=0 && (home=="No" || (home=="Yes" && h1!=0 && h2!=0))){
+            document.getElementById("q4").style.display = "none";
+            document.getElementById("q5").style.display = "none";
+            if (h1!=0 && h2!=0){
+                if (Math.abs(c1-h1)/c1>0.1 || Math.abs(c2-h2)/c2>0.1){
+                    document.getElementById("r3").style.display = "block";
+                }
+            }
+            if (c1>=140 || c2>=90){
+                document.getElementById("r4").style.display = "block";
+            }
+        }
+        preScreen = true;
+        } else if (preScreen && hyperTool0==false){
+            document.getElementById("r3").style.display = "none";
+            document.getElementById("r4").style.display = "none";
+            document.getElementById("t1").style.display = "block";
+            hyperTool0 = true;
+        } else if (hyperTool0 && hyperTool1==false){
+            var p1 = document.getElementById("t1a").value;
+            var p2 = document.getElementById("t1b").value;
+            var p3 = document.getElementById("t1c").value
+            var p4 = document.getElementById("compliant").value;
+            console.log(p1+p2+p3+p4);
+            if (p1!="Pick an option." && p2!="Pick an option." && p3!="Pick an option." && p4!="Pick an option."){
+                hyperTool1 = true;
+                document.getElementById("t1").style.display = "none";
+                document.getElementById("t2").style.display = "block";
+            }
+        } else if (hyperTool1 && hyperTool2==false){
+            var p1 = document.getElementById("height").value;
+            var p2 = document.getElementById("weight").value;
+            var p3 = document.getElementById("age").value
+            var p4 = document.getElementById("gender").value;
+            var p5 = document.getElementById("tobacco").value;
+            var p6 = document.getElementById("alcohol").value;
+            var p7 = document.getElementById("exercise1").value;
+            var p8 = document.getElementById("exercise2").value;
+            if (p1!="Pick an option." && p2!="Pick an option." && p3!="Pick an option." && p4!="Pick an option." && p5!="Pick an option." && p6!="Pick an option." && p7!="Pick an option." && p8!="Pick an option."){
+                hyperTool2 = true;
+                document.getElementById("t2").style.display = "none";
+                document.getElementById("button1").style.display = "none";
+                var comp = document.getElementById("compliant").value;
+                var alc = document.getElementById("alcohol").value;
+                var tob = document.getElementById("tobacco").value;
+                var drugs = document.getElementById("drugs").value;
+                var home = document.getElementById("homeRead").value;
+                
+                if (comp=="Yes"){
+                    document.getElementById("refer").style.display = "block";
+                } else {
+                    document.getElementById("nurse").style.display = "block";
+                }
+                
+                if (alc=="Twice a week" || alc=="Once a day" || alc=="Multiple times a day" || tob=="Yes" || drugs.length>3){
+                    document.getElementById("cessation").style.display = "block";
+                }
+                document.getElementById("diet").style.display = "block";
+                document.getElementById("summary").style.display = "block";
+                document.getElementById("q4").style.display = "block";
+                if (home=="Yes"){
+                    document.getElementById("q5").style.display = "block";
+                }
+                document.getElementById("t1").style.display = "block";
+                document.getElementById("t2").style.display = "block";
+                $("#form :input").attr("disabled", true);
+            }
+        }
+      }
+    </script>
+    <script src="js/global.js"></script>
+
+</body>
+
+</html>
+<!-- end document-->

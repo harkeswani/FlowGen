@@ -1,0 +1,304 @@
+<survey>Hypertension Evaluation Tool
+    <section>
+        <id>1</id>
+        <text>Part 1</text>
+        <type>Questions</type>
+        <nextOption>2</nextOption>
+        <question>
+            <id>1</id>
+            <text>Did the patient bring a cuff?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+            <condition>
+                <state>No</state>
+                <operation>equal</operation>
+                <flag>cuff</flag>
+            </condition>
+        </question>
+        <question>
+            <id>2</id>
+            <text>Is the bp cuff functional?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+            <condition>
+                <state>No</state>
+                <operation>equal</operation>
+                <flag>cuff</flag>
+            </condition>
+        </question>
+        <question>
+            <id>3</id>
+            <text>Is the patient using the correct technique for measuring their blood pressure?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+            <condition>
+                <state>No</state>
+                <operation>equal</operation>
+                <flag>technique</flag>
+            </condition>
+        </question>
+    </section>
+    <section>
+        <id>2</id>
+        <text>Part 2</text>
+        <type>Questions</type>
+        <nextOption>3</nextOption>
+        <question>
+            <id>1</id>
+            <text>Is the patient on a channel blocker?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+        </question>
+        <question>
+            <id>2</id>
+            <text>Is the patient on a ace/arb inhibitor?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+        </question>
+        <question>
+            <id>3</id>
+            <text>Is the patient on a thiazide?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+        </question>
+    </section>
+    <section>
+        <id>3</id>
+        <text>Part 3</text>
+        <type>Questions</type>
+        <nextOption>4</nextOption>
+        <question>
+            <id>1</id>
+            <required>No</required>
+            <text>List the medications patient is taking. If none, leave blank.</text>
+            <type>Text</type>
+        </question>
+        <question>
+            <id>2</id>
+            <required>Yes</required>
+            <text>Is the patient compliant with medications?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+            <condition>
+                <state>No</state>
+                <operation>equal</operation>
+                <flag>notCompliant</flag>
+            </condition>
+            <condition>
+                <state>Yes</state>
+                <operation>equal</operation>
+                <flag>compliant</flag>
+            </condition>
+        </question>
+    </section>
+    <section>
+        <id>4</id>
+        <text>Please take bp reading of patient using clinical equipment.</text>
+        <type>Questions</type>
+        <nextOption>5</nextOption>
+        <nextOption>6</nextOption>
+        <question>
+            <id>1</id>
+            <required>Yes</required>
+            <text>Systolic Pressure</text>
+            <type>Number</type>
+            <required>Yes</required>
+            <condition>
+                <state>139</state>
+                <operation>greater</operation>
+                <flag>hyper</flag>
+            </condition>
+        </question>
+        <question>
+            <id>2</id>
+            <required>Yes</required>
+            <text>Diastolic Pressure</text>
+            <type>Number</type>
+            <required>Yes</required>
+            <condition>
+                <state>89</state>
+                <operation>greater</operation>
+                <flag>hyper</flag>
+            </condition>
+        </question>
+    </section>
+    <section>
+        <id>5</id>
+        <text>Clinician measured bp consistent with uncontrolled hypertension. Proceed to tool.</text>
+        <nextOption>6</nextOption>
+        <type>Output</type>
+        <output>
+            <data>S4Q1</data>
+            <data>S4Q2</data>
+        </output>
+    </section>
+    <section>
+        <id>11</id>
+        <text>Recommend patient to buy new cuff.</text>
+        <nextOption>2</nextOption>
+        <type>Output</type>
+        <prereq>cuff</prereq>
+    </section>
+    <section>
+        <id>6</id>
+        <text>Part 4</text>
+        <type>Questions</type>
+        <nextOption>10</nextOption>
+        <question>
+            <id>1</id>
+            <required>Yes</required>
+            <text>Patient BMI</text>
+            <type>Number</type>
+            <required>Yes</required>
+            <condition>
+                <state>29</state>
+                <operation>greater</operation>
+                <flag>obese</flag>
+            </condition>
+        </question>
+        <question>
+            <id>2</id>
+            <required>Yes</required>
+            <text>Does patient smoke tobacco?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Yes</option>
+            <option>No</option>
+            <condition>
+                <state>No</state>
+                <operation>equal</operation>
+                <flag>drug</flag>
+            </condition>
+        </question>
+        <question>
+            <id>3</id>
+            <required>Yes</required>
+            <text>How often does the patient consume alcohol?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Never</option>
+            <option>A few times a year</option>
+            <option>Once a month</option>
+            <option>Twice a month</option>
+            <option>Once a week</option>
+            <option>Twice a week</option>
+            <option>Once a day</option>
+            <option>Multiple times a day</option>
+            <condition>
+                <state>Twice a week</state>
+                <operation>equal</operation>
+                <flag>drug</flag>
+            </condition>
+            <condition>
+                <state>Once a day</state>
+                <operation>equal</operation>
+                <flag>drug</flag>
+            </condition>
+            <condition>
+                <state>Multiple times a day</state>
+                <operation>equal</operation>
+                <flag>drug</flag>
+            </condition>
+        </question>
+        <question>
+            <id>4</id>
+            <required>Yes</required>
+            <text>How often does the patient exercise?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Never</option>
+            <option>Once a month</option>
+            <option>Twice a month</option>
+            <option>Once a week</option>
+            <option>2-3 times a week</option>
+            <option>Once a day</option>
+            <condition>
+                <state>Never</state>
+                <operation>equal</operation>
+                <flag>exercise</flag>
+            </condition>
+            <condition>
+                <state>Once a month</state>
+                <operation>equal</operation>
+                <flag>exercise</flag>
+            </condition>
+            <condition>
+                <state>Twice a month</state>
+                <operation>equal</operation>
+                <flag>exercise</flag>
+            </condition>
+            <condition>
+                <state>Once a week</state>
+                <operation>equal</operation>
+                <flag>exercise</flag>
+            </condition>
+        </question>
+        <question>
+            <id>5</id>
+            <required>Yes</required>
+            <text>Duration of exercise sessions?</text>
+            <type>Multiple</type>
+            <required>Yes</required>
+            <option>Never</option>
+            <option>15 mins</option>
+            <option>30 mins</option>
+            <option>45 mins</option>
+            <option>1+ hour</option>
+        </question>
+        <question>
+            <id>6</id>
+            <required>No</required>
+            <text>Does the patient consume illicit drugs? If so, list them. If none, leave blank.</text>
+            <type>Text</type>
+        </question>
+    </section>
+    <section>
+        <id>10</id>
+        <text>Patient Summary</text>
+        <type>Output</type>
+        <message>
+            <flag>hyper</flag>
+            <text>Patient has symptoms of uncontrolled hypertension.</text>
+        </message>
+        <message>
+            <flag>notCompliant</flag>
+            <text>Nursing intervention is sufficient, as patient is not taking medication as directed.</text>
+        </message>
+        <message>
+            <flag>compliant</flag>
+            <flag>hyper</flag>
+            <text>Refer to physician.</text>
+        </message>
+        <output>
+            <data>S1Q1</data>
+            <data>S1Q2</data>
+            <data>S2Q1</data>
+            <data>S2Q2</data>
+            <data>S2Q3</data>
+            <data>S3Q1</data>
+            <data>S3Q2</data>
+            <data>S4Q1</data>
+            <data>S4Q2</data>
+            <data>S6Q1</data>
+            <data>S6Q2</data>
+            <data>S6Q3</data>
+            <data>S6Q4</data>
+            <data>S6Q5</data>
+            <data>S6Q6</data>
+        </output>
+    </section>
+</survey>

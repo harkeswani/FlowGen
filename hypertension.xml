@@ -3,6 +3,7 @@
         <id>1</id>
         <text>Part 1</text>
         <type>Questions</type>
+        <nextOption>11</nextOption>
         <nextOption>2</nextOption>
         <question>
             <id>1</id>
@@ -271,16 +272,16 @@
         <text>Patient Summary</text>
         <type>Output</type>
         <message>
-            <flag>hyper</flag>
+            <prereqFlag>hyper</prereqFlag>
             <text>Patient has symptoms of uncontrolled hypertension.</text>
         </message>
         <message>
-            <flag>notCompliant</flag>
+            <prereqFlag>notCompliant</prereqFlag>
             <text>Nursing intervention is sufficient, as patient is not taking medication as directed.</text>
         </message>
         <message>
-            <flag>compliant</flag>
-            <flag>hyper</flag>
+            <prereqFlag>compliant</prereqFlag>
+            <prereqFlag>hyper</prereqFlag>
             <text>Refer to physician.</text>
         </message>
         <output>

@@ -1,0 +1,420 @@
+{
+   "survey": {
+      "section": [
+         {
+            "id": "1",
+            "text": "Part 1",
+            "type": "Questions",
+            "nextOption": [
+               "11",
+               "2"
+            ],
+            "question": [
+               {
+                  "id": "1",
+                  "text": "Did the patient bring a cuff?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ],
+                  "condition": [
+                     {
+                        "state": "No",
+                        "operation": "equal",
+                        "flag": "cuff"
+                     }
+                  ]
+               },
+               {
+                  "id": "2",
+                  "text": "Is the bp cuff functional?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ],
+                  "condition": [
+                     {
+                        "state": "No",
+                        "operation": "equal",
+                        "flag": "cuff"
+                     }
+                  ]
+               },
+               {
+                  "id": "3",
+                  "text": "Is the patient using the correct technique for measuring their blood pressure?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ],
+                  "condition": [
+                     {
+                        "state": "No",
+                        "operation": "equal",
+                        "flag": "technique"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "id": "2",
+            "text": "Part 2",
+            "type": "Questions",
+            "nextOption": [
+               "3"
+            ],
+            "question": [
+               {
+                  "id": "1",
+                  "text": "Is the patient on a channel blocker?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ]
+               },
+               {
+                  "id": "2",
+                  "text": "Is the patient on a ace/arb inhibitor?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ]
+               },
+               {
+                  "id": "3",
+                  "text": "Is the patient on a thiazide?",
+                  "type": "Multiple",
+                  "required": [
+                     "Yes"
+                  ],
+                  "option": [
+                     "Yes",
+                     "No"
+                  ]
+               }
+            ]
+         },
+         {
+            "id": "3",
+            "text": "Part 3",
+            "type": "Questions",
+            "nextOption": [
+               "4"
+            ],
+            "question": [
+               {
+                  "id": "1",
+                  "required": [
+                     "No"
+                  ],
+                  "text": "List the medications patient is taking. If none, leave blank.",
+                  "type": "Text"
+               },
+               {
+                  "id": "2",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Is the patient compliant with medications?",
+                  "type": "Multiple",
+                  "option": [
+                     "Yes",
+                     "No"
+                  ],
+                  "condition": [
+                     {
+                        "state": "No",
+                        "operation": "equal",
+                        "flag": "notCompliant"
+                     },
+                     {
+                        "state": "Yes",
+                        "operation": "equal",
+                        "flag": "compliant"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "id": "4",
+            "text": "Please take bp reading of patient using clinical equipment.",
+            "type": "Questions",
+            "nextOption": [
+               "5",
+               "6"
+            ],
+            "question": [
+               {
+                  "id": "1",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Systolic Pressure",
+                  "type": "Number",
+                  "condition": [
+                     {
+                        "state": "139",
+                        "operation": "greater",
+                        "flag": "hyper"
+                     }
+                  ]
+               },
+               {
+                  "id": "2",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Diastolic Pressure",
+                  "type": "Number",
+                  "condition": [
+                     {
+                        "state": "89",
+                        "operation": "greater",
+                        "flag": "hyper"
+                     }
+                  ]
+               }
+            ]
+         },
+         {
+            "id": "5",
+            "text": "Clinician measured bp consistent with uncontrolled hypertension. Proceed to tool.",
+            "nextOption": [
+               "6"
+            ],
+            "type": "Output",
+            "output": {
+               "data": [
+                  "S4Q1",
+                  "S4Q2"
+               ]
+            }
+         },
+         {
+            "id": "11",
+            "text": "Recommend patient to buy new cuff.",
+            "nextOption": [
+               "2"
+            ],
+            "type": "Output",
+            "prereq": "cuff"
+         },
+         {
+            "id": "6",
+            "text": "Part 4",
+            "type": "Questions",
+            "nextOption": [
+               "10"
+            ],
+            "question": [
+               {
+                  "id": "1",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Patient BMI",
+                  "type": "Number",
+                  "condition": [
+                     {
+                        "state": "29",
+                        "operation": "greater",
+                        "flag": "obese"
+                     }
+                  ]
+               },
+               {
+                  "id": "2",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Does patient smoke tobacco?",
+                  "type": "Multiple",
+                  "option": [
+                     "Yes",
+                     "No"
+                  ],
+                  "condition": [
+                     {
+                        "state": "No",
+                        "operation": "equal",
+                        "flag": "drug"
+                     }
+                  ]
+               },
+               {
+                  "id": "3",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "How often does the patient consume alcohol?",
+                  "type": "Multiple",
+                  "option": [
+                     "Never",
+                     "A few times a year",
+                     "Once a month",
+                     "Twice a month",
+                     "Once a week",
+                     "Twice a week",
+                     "Once a day",
+                     "Multiple times a day"
+                  ],
+                  "condition": [
+                     {
+                        "state": "Twice a week",
+                        "operation": "equal",
+                        "flag": "drug"
+                     },
+                     {
+                        "state": "Once a day",
+                        "operation": "equal",
+                        "flag": "drug"
+                     },
+                     {
+                        "state": "Multiple times a day",
+                        "operation": "equal",
+                        "flag": "drug"
+                     }
+                  ]
+               },
+               {
+                  "id": "4",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "How often does the patient exercise?",
+                  "type": "Multiple",
+                  "option": [
+                     "Never",
+                     "Once a month",
+                     "Twice a month",
+                     "Once a week",
+                     "2-3 times a week",
+                     "Once a day"
+                  ],
+                  "condition": [
+                     {
+                        "state": "Never",
+                        "operation": "equal",
+                        "flag": "exercise"
+                     },
+                     {
+                        "state": "Once a month",
+                        "operation": "equal",
+                        "flag": "exercise"
+                     },
+                     {
+                        "state": "Twice a month",
+                        "operation": "equal",
+                        "flag": "exercise"
+                     },
+                     {
+                        "state": "Once a week",
+                        "operation": "equal",
+                        "flag": "exercise"
+                     }
+                  ]
+               },
+               {
+                  "id": "5",
+                  "required": [
+                     "Yes",
+                     "Yes"
+                  ],
+                  "text": "Duration of exercise sessions?",
+                  "type": "Multiple",
+                  "option": [
+                     "Never",
+                     "15 mins",
+                     "30 mins",
+                     "45 mins",
+                     "1+ hour"
+                  ]
+               },
+               {
+                  "id": "6",
+                  "required": [
+                     "No"
+                  ],
+                  "text": "Does the patient consume illicit drugs? If so, list them. If none, leave blank.",
+                  "type": "Text"
+               }
+            ]
+         },
+         {
+            "id": "10",
+            "text": "Patient Summary",
+            "type": "Output",
+            "message": [
+               {
+                  "prereqFlag": [
+                     "hyper"
+                  ],
+                  "text": "Patient has symptoms of uncontrolled hypertension."
+               },
+               {
+                  "prereqFlag": [
+                     "notCompliant"
+                  ],
+                  "text": "Nursing intervention is sufficient, as patient is not taking medication as directed."
+               },
+               {
+                  "prereqFlag": [
+                     "compliant",
+                     "hyper"
+                  ],
+                  "text": "Refer to physician."
+               }
+            ],
+            "output": {
+               "data": [
+                  "S1Q1",
+                  "S1Q2",
+                  "S2Q1",
+                  "S2Q2",
+                  "S2Q3",
+                  "S3Q1",
+                  "S3Q2",
+                  "S4Q1",
+                  "S4Q2",
+                  "S6Q1",
+                  "S6Q2",
+                  "S6Q3",
+                  "S6Q4",
+                  "S6Q5",
+                  "S6Q6"
+               ]
+            }
+         }
+      ],
+      "__text": "Hypertension Evaluation Tool"
+   }
+}

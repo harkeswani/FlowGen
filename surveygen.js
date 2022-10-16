@@ -14,6 +14,7 @@ function section(I, T, TY, P){
     this.type = TY;
     this.nextSection = [];
     this.prereqs = [];
+    this.negs = [];
     this.questions = [];
     this.outputs = [];
     this.messages = [];
@@ -49,6 +50,7 @@ function loadXML(fileName) {
 var surveyData = [];
 var cflags = [];
 var sectionHistory = [1];
+var flagStack = [];
 
 function submit(event){
     if (updateSectionData(sectionHistory[sectionHistory.length-1])){
@@ -69,6 +71,14 @@ function submit(event){
                 } else if (operation=="equal"){
                     if (questions[i].state==state){
                         updateFlag(questions[i].conditions[j].flag, true);
+                    }
+                } else if (operation=="true"){
+                    if (questions[i].state==state){
+                        updateFlag(questions[i].conditions[j].flag, true);
+                    }
+                } else if (operation=="false"){
+                    if (questions[i].state==state){
+                        updateFlag(questions[i].conditions[j].flag, false);
                     }
                 }
             }
@@ -115,7 +125,6 @@ function submit(event){
             }
         }
     }
-    
 }
 
 function back(event){
@@ -144,7 +153,8 @@ function stackContains(stack, value){
 }
     
 function getFlag(flagName){
-    for (var i=0;i<cflags.length;i++){
+    if (!flagName.startsWith("N")){
+        for (var i=0;i<cflags.length;i++){
         if (cflags[i].flagName==flagName){
             if (cflags[i].status==true){
                 return true;
@@ -152,6 +162,17 @@ function getFlag(flagName){
                 return false;
             }
         }
+    }
+    } else {
+        for (var i=0;i<cflags.length;i++){
+        if (("N"+cflags[i].flagName)==flagName){
+            if (cflags[i].status==false){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
     }
     return false;
 }

@@ -96,12 +96,17 @@
             <option>No</option>
             <condition>
                 <state>No</state>
+                <operation>false</operation>
+                <flag>compliant</flag>
+            </condition>
+            <condition>
+                <state>No</state>
                 <operation>equal</operation>
                 <flag>notCompliant</flag>
             </condition>
             <condition>
                 <state>Yes</state>
-                <operation>equal</operation>
+                <operation>true</operation>
                 <flag>compliant</flag>
             </condition>
         </question>
@@ -276,7 +281,7 @@
             <text>Patient has symptoms of uncontrolled hypertension.</text>
         </message>
         <message>
-            <prereqFlag>notCompliant</prereqFlag>
+            <prereqFlag>Ncompliant</prereqFlag>
             <text>Nursing intervention is sufficient, as patient is not taking medication as directed.</text>
         </message>
         <message>
